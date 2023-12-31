@@ -1,0 +1,742 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+    overflow: hidden;
+}
+.background{
+    width: 100%;
+    height: auto;
+}
+.Container{
+    position: absolute;
+    margin: 0;
+    background-color: #D9D9D991;
+    top: 0px;
+    height: 100%;
+    width: 60%;
+    left: -10%;
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    /* transform: skewX(-20deg); */
+    
+}
+.signup{
+    left: 50%;
+    /* left: 50%; */
+    width: 60%;
+    /* width: 50%; */
+    background-color: #7676764A;
+    text-align: right;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transition: 0.4s ease-in-out;
+    /* transform: skewX(20deg); */
+}
+.login{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transition: 0.4s ease-in-out;
+    /* transform: skewX(20deg); */
+}
+
+.login:hover{
+    /* transform: skewX(-20deg); */
+    width: calc(60% + 3px);
+    left: 0%;
+    clip-path: polygon(0% 0%, 100% 0, 66% 100%, 0% 100%);
+}
+.login:hover + .signup{
+    left: calc(40% - 3px);  
+    clip-path: polygon(34% 0%, 100% 0, 100% 100%, 0% 100%);
+}
+
+.signup:hover{
+    /* transform: skewX(20deg);  */
+    clip-path: polygon(0% 0%, 100% 0, 100% 100%, 34% 100%);
+    left: calc(40% - 3px);
+}
+/* .box-hover{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+} */
+.box-hover{
+    width: calc(60% + 3px);
+    left: 0%;
+    clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 0% 100%);
+}
+.text{
+    position: absolute;
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 400%;
+    left: 45%;
+    top: 35%;
+    color: black;
+    transition: 0.4s ease-in-out;
+    /* opacity: 0; */
+}
+
+.SIGNUP{
+    left: 30%;
+    color: white;
+}
+.login:hover .LOGIN{
+    top: 0%;
+    left: 3%;
+    font-size: 300%;
+}
+.login:hover + .signup .SIGNUP{
+    left: 47%;
+}
+.signup:hover .SIGNUP{
+    top: 0%;
+    left: 78%;
+    font-size: 300%;
+}
+.box-hover .LOGIN{
+    left: calc(28% + 2px);
+}
+.content{
+    position: absolute;
+    color: black;   
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 380%;
+    opacity: 0;
+}
+.lg{
+    left: 3%;
+    top: 20%;
+    color: transparent;
+    -webkit-text-stroke: black 0.5px;
+
+    animation-play-state: paused;
+}
+.lg::before{
+    content: "Welcome back";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0%;
+    overflow: hidden;
+    color: black;
+    -webkit-text-stroke: black 0px;
+    /* background-color: aqua; */
+    border-right: solid black 5px;
+    line-break: anywhere;
+    animation: animate 4s linear none normal 1 ;
+    animation-fill-mode: forwards;
+    animation-delay: -1.8s;
+}
+@keyframes animate{
+    0%,50%{
+        width: 0;
+    }
+    70%,100%{
+        width: 102%;
+    }
+}
+.su,.su2{
+    text-align: left;
+    left: 57%;
+    top: 20%;
+    color: transparent;
+    -webkit-text-stroke: white 0.5px;
+    animation-play-state: paused;
+    /* background-color: aqua; */
+}
+.su2{
+    top: 32%;
+    left: 58.2%;
+}
+.su::before, .su2::before{
+    text-align: left;
+    white-space: pre-line;
+    /* background-color: antiquewhite; */
+    content:"We glad for";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0%;
+    overflow: hidden;
+    color: white;
+    -webkit-text-stroke: white 0px;
+    /* background-color: aqua; */
+    border-right: solid white 5px;
+    line-break: anywhere;
+    animation: animate 4s linear none normal 1 ;
+    animation-fill-mode: forwards;
+    animation-delay: -1.8s;
+}
+.su2::before{
+    content:"having you";
+    animation-delay: -1.6s;
+}
+
+.signup:hover .su,.su2{
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.login:hover .lg{
+    opacity: 1;
+    animation-play-state: running;
+    
+}
+.subject{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #632CBC;
+    font-size: 390%;
+    position: absolute;
+    left: 3%;
+    top: 30%;
+    /* background-color: aqua; */
+    height: 10.5%;
+    overflow: hidden;
+    opacity: 0;
+}
+.sub2{
+    color: #B0B8FF;
+    left: 24%;
+    top: 44.3%; 
+}
+.appear{
+    opacity: 0;
+    animation: appear 0.5s linear none normal 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+.login:hover .appear{
+    animation-play-state: running;
+}
+.signup:hover .appear{
+    animation-play-state: running;
+}
+@keyframes appear{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+
+.subject span{
+    position: relative;
+    top: 0;
+    animation: animation 10s ease infinite;
+}
+@keyframes animation{
+    0%,100%{
+        top: 0;
+    }
+    15%{
+        top: 0;
+    }
+    20%{
+        top: -96px;
+    }
+    35%{
+        top: -96px;
+    }
+    40%{
+        top: -190px;
+    }
+    55%{
+        top: -190px;
+    }
+    60%{
+        top: -282px;
+    }
+    75%{
+        top: -282px;
+    }
+    80%{
+        top: -377px;
+    }
+    95%{
+        top: -377px;
+    }
+}
+.rounded-pill{
+    background-color: #632CBC;
+    position: absolute;
+    height: 60px; 
+    width: 170px;
+    border: none;
+    left: 3%;
+    top: 42%;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 23px;
+    padding-left: 25px;
+    opacity: 0;
+    transition: 0.2s;
+}
+.rounded-pill:hover{
+    background-color: #be97fd;
+}
+.rounded-pill i{
+    font-size: 30px;
+    color: white;
+    margin-left: 8%;
+}
+.btn2{
+    opacity: 0;
+    background-color: #B0B8FF;
+    padding-left: 10px;
+    font-size: 23px;
+    left: 78%;
+    top: 58%;
+}
+.btn2:hover{
+    background-color: #6b7aff;
+}
+.btn2 i{
+    font-size: 30px;
+    margin-left: 0.5%;
+    margin-right: 6%;
+}
+
+
+.backbtn{
+    opacity: 0;
+    top:73%;
+    left: 2%;
+    padding-left: 15px;
+    height: 60px; 
+    width: 250px;
+    font-size: 20px;
+    transition: 0.2s;
+    pointer-events: none;
+}
+.backbtn i{
+    margin-left: 0%;
+    margin-right: 2.5%;
+    font-size: 25px;
+}
+.pushing{
+    width: calc(100%);
+    left: 0%;
+    clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+    pointer-events: none;
+}
+.pushing .LOGIN{
+    top: 0%;
+    left: calc( 1.8% + 0.5px);
+    font-size: 300%;
+}
+.pushing .s1, .pushing .sub1, .pushing .btn1{
+    opacity: 0;
+}
+
+.bePushed{
+    pointer-events: none;
+    left: calc(100%);  
+    clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+}
+.bePushed .SIGNUP{
+    left: 47%;
+}
+
+.backbtn2{
+    opacity: 0;
+    top:73%;
+    left: 80%;
+    height: 60px; 
+    width: 270px;
+    font-size: 20px;
+    transition: 0.2s;
+    background-color: #B0B8FF;
+    pointer-events: none;
+}
+.backbtn2:hover{
+    background-color: #6b7aff;
+}
+.backbtn2 i{
+    margin-left: 6.5%;
+    font-size: 25px;
+}
+
+.pushing2{
+    clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+    left: calc(0%);
+    width: 111%;
+    pointer-events: none;
+}
+
+.pushing2 .SIGNUP{
+    top: 0%;
+    left: 78%;
+    font-size: 300%;
+}
+
+.pushing2 .s2, .pushing2 .sub2, .pushing2 .btn2{
+    opacity: 0;
+}
+
+.bePushed2{
+    width: calc(0%);
+    left: 0%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    pointer-events: none;
+}
+.bePushed2 .LOGIN{
+    left: calc(28% + 2px);
+}
+.reAppear{
+    opacity: 1;
+    pointer-events: all;
+}
+/* .login{
+    pointer-events: none;
+}
+.signup{
+    pointer-events: none;
+} */
+
+
+
+/* Login Sign Up Form */
+.Container2{
+    /* background-color: rgb(176, 176, 176); */
+    padding: 20px;
+    position: absolute;
+    /* top: 20%; */
+    top: 40%;
+    left: 33.5%;
+    opacity: 0;
+    pointer-events: none;
+
+}
+.SGFORM{
+    left: 35%;
+}
+.springUp2{
+    pointer-events: all;
+    animation: spingUp2 0.6s ease-in-out none normal 1;
+    animation-fill-mode: forwards;
+}
+.springUp{
+    pointer-events: all;
+    animation: spingUp 0.6s ease-in-out none normal 1;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes spingUp{
+    0%{
+        opacity: 0;
+        top: 40%;
+    }
+    100%{
+        top: 20%;
+        opacity: 1;
+    }
+}
+
+@keyframes spingUp2{
+    0%{
+        opacity: 0;
+        top: 40%;
+    }
+    100%{
+        top: 8%;
+        opacity: 1;
+    }
+}
+.Container2 .form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.Container2 .form .inputbox{
+    position: relative;
+    width: 430px;
+    border-radius: 25px;
+}
+
+.Container2 .form .inputbox input{
+    padding: 12px 10px 12px 53px;
+    width: 100%;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: 0.2s;
+    border: 3px solid transparent;
+}
+#SignUpSubmit {
+    padding: 10px 50px;
+    font-weight: 500;
+    width: 60%;
+    background-color: #B0B8FF;
+    color: white;
+    margin-left: 20%;
+    border: 3px solid transparent;
+    border-radius: 30px;
+}
+
+
+
+
+
+.Container2 .form .inputbox span {
+    /* background-color: bisque; */
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    padding: 5px 10px;
+    border-left: 2px solid black;
+    color: #929292;
+    pointer-events: none;
+    letter-spacing: 1.5px;
+    /* background-color: #B0B8FF; */
+    transition: 0.2s;
+}
+
+.Container2 .form .inputbox input:valid ~ span,
+.Container2 .form .inputbox input:focus ~ span {
+    color: transparent;
+}
+
+.Container2 .form .inputbox input:focus {
+    outline: none;
+    border: 3px solid #B0B8FF;
+}
+
+
+.Container2 .form .inputbox i {
+    position: absolute;
+    top: 19%;
+    left: 3%;
+    color: black;
+    font-size: 20px;
+}
+.Container2 .form .inputbox .fa-lock{
+    font-size: 18px;
+    top: 30%;
+    left: 3.5%;
+}
+.radio_btn{
+    display: flex;
+    flex-direction: row;
+    gap: 125px;
+}
+.radio{
+    border-radius: 20px;
+    overflow: hidden;
+    display: inline-flex;
+    position: relative;
+}
+.radioInput{
+    display: none;
+}
+.radioLabel{
+    padding: 8px 10px; 
+    font-weight: 500;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.radioInput:checked + .radioLabel{
+    background-color: #B0B8FF;
+    color: white;
+}
+.policy_contain{
+    position: relative;
+    color: white;
+    font-weight: 500;
+    font-size: 13px;
+    margin-left: 40px;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.policy_contain input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+}
+
+.checkmark1 {
+    position: absolute;
+    top: 3px;
+    left: -20px;
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border:2px solid black;
+    border-radius: 2px;
+  }
+  
+
+  .policy_contain:hover input ~ .checkmark1 {
+    background-color: #e3e3e3;
+  }
+
+  .checkmark1:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+
+  .policy_contain input:checked ~ .checkmark1:after {
+    display: block;
+  }
+  
+
+  .policy_contain .checkmark1:after {
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid #5465ff;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }
+
+  
+
+  /* login */
+.Container2 .FORMlogin{
+    position: relative;
+}
+#LoginSubmit {
+    padding: 10px 50px;
+    font-weight: 500;
+    width: 60%;
+    background-color: white;
+    color: black;
+    margin-left: 20%;
+}
+#SignUpSubmit:hover {
+    background-color: #6b7aff;
+    border: 3px solid #6b7aff;
+}
+#LoginSubmit:hover {
+    background-color: #be97fd;
+    border: 3px solid #be97fd;
+    color: white;
+}
+
+.reminder{
+    margin-top: -5px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 170px;
+}
+.option{
+    color: rgb(209, 209, 209);
+    font-size: 13px;
+    font-weight: 500;
+}
+.option::before,.option::after{
+    content: "";
+    position: absolute;
+    width: 70px;
+    top: 97%;
+    border-bottom: 2px solid rgb(209, 209, 209);
+}
+.option::before{
+    left: 21%;
+}
+.option::after{
+    left: 63.8%;
+}
+.GGbtn{
+    border-radius: 30px;
+    padding: 12px 18px;
+    background-color: #FFB2B2;
+    border: none;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    transition: 0.3s;
+    width: 57%;
+    position: absolute;
+    top: 100%;
+    left: 22%;
+}
+.GGbtn:hover{
+    background-color: #ff9898;
+}
+.GGbtn .logoGG{
+    background: url(images/google.png);
+    background-size: cover;
+
+    border-radius: 20px;
+    width: 25px;
+    height: 25px;
+}
+.LGFORM .form {
+    gap: 35px;
+}
+
+.option, .GGbtn {
+    margin-top: -15px;
+}
+
+.ms1, .ms2 {
+    font-weight: 500;
+    font-size: 11px;
+    color: #b81b1b;
+    margin: 10px 10px;
+    position: absolute;
+    top: -9%;
+    left: 10%;
+    display: none;
+}
+
+
+
+
+.ms2 {
+    top: 13.7%;
+}
+
+.testingError {
+    border: 3px solid #b81b1b !important;
+}
+
+.SGFORM .form {
+    gap: 35px;
+}
+
+.MS {
+    display: none;
+    font-weight: 500;
+    font-size: 11px;
+    color: #FFA4A4;
+    margin: 10px 10px;
+    position: absolute;
+    top: -2.5%;
+    left: 10%;
+}
+.ms2-2 {
+    top: 57%; /* +15.5 */
+}
+.ms3{
+    top: 72.5%;
+}
+.message2 {
+    display: block;
+}
+.message {
+    display: block;
+}

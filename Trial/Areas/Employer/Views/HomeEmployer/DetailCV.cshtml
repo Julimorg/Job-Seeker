@@ -1,0 +1,217 @@
+﻿@model Trial.Models.CV
+@{
+    Layout = null;
+    ViewBag.Title = "Job Seeker | Employer";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+    <link rel="stylesheet" href="~/Content/Employeers access/access/css/companylist.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./access/css/responsive.css">
+    <link rel="stylesheet" href="./access/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chathura:wght@800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/image/logo_snkhead.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="main">
+        <!-- Header -->
+        <div id="header">
+            <!-- logo button -->
+            <a href="#" class="logo">
+                <div class="inner-headings">
+                    <span>
+                        Job-Seeker<br />
+                        Full-Time <br />
+                        Part-Time <br />
+                        Freelancer <br />
+                        Intership <br />
+                        Temporary <br />
+                    </span>
+                </div>
+            </a>
+            <!-- header - bar -->
+            <div class="nav mt-12 ">
+                <ul class="sub-nav">
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Home", "EmployerFirstPage", "HomeEmployer")</a></li>
+                    <li class="mt-12"><a href="">@Html.ActionLink("CV list", "CVlist", "HomeEmployer")</a></li>
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Your JD list", "YourJDList", "HomeEmployer")</a></li>
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Contact", "Contact", "HomeEmployer")</a></li>
+                    <!-- job button -->
+                    <button class="bbtn2"><a href="#">@Html.ActionLink("Offer a Job", "Add", "HomeEmployer", new { @style = "color:#fff; text-decoration: none;" })</a></button>
+
+                </ul>
+                <!-- Log out statement -->
+                <div class="log-out">
+                    <!-- Name User -->
+                    @{
+                        var cur_user = (Trial.Models.user)HttpContext.Current.Session["User"];
+                        if (cur_user != null)
+                        {
+                            string name = cur_user.email;
+                            <p class="name-user">
+                                @name.Split('@')[0]
+                            </p>
+                        }
+                    }
+                    <!-- Log out button -->
+                    <div class="scene">
+                        <div class="cube">
+                            <span class="side top">
+                                @Html.ActionLink("Are You Sure?", "Logout", "User", new { area = "" }, new { @style = "text-decoration: none; color: white;" })
+                            </span>
+                            <span class="side front">
+                                <i class="fa-solid fa-right-from-bracket"> Log Out</i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Company Detail -->
+        <div id="content">
+            <div class="company-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="single-post">
+                                <h2>@Model.CV_name</h2>
+                                <div class="post-meta text-muted">
+                                    <span><i class="far fa-user"></i> @Model.applicant_name</span><span><i class="far fa-calendar"></i>@Model.date_upload</span>
+                                </div>
+                                <div class="post-contant">
+                                    <h3 class="company-name" style="border-bottom:1px solid #e7e7e7;">Basic information </h3>
+                                    <div class="form" style="border-bottom:1px solid #e7e7e7;">
+                                        <p>Name: @Model.applicant_name</p>
+                                        <p>Position: @Model.applied_position</p>
+                                        <p>Location: @Model.location</p>
+                                    </div>
+                                    <!-- Button 2 -->
+                                    <div class="share">
+                                        <button class="main-btn">@Html.ActionLink("Get PDF", "GetPDF", "HomeEmployer", new { @directory = Model.CV_file }, new { @style = "color: white" })</button>
+                                    </div>
+
+                                    <div class="line"></div>
+
+                                    <form id="commentForm">
+
+                                        <!-- Message input -->
+                                        <div class="mb-3 mt-10">
+                                            <label class="form-label" for="comment">Leave a Comment</label>
+                                            <textarea class="form-control" id="comment" type="text" placeholder="" style="height: 10rem;" data-sb-validations="required"></textarea>
+                                            <div class="invalid-feedback" data-sb-feedback="message:required">Comment is required.</div>
+                                        </div>
+
+                                        <!-- Name input -->
+                                        <div class="mb-3">
+                                            <input class="form-control" id="name" type="text" placeholder="Name *" data-sb-validations="required" />
+                                            <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
+                                        </div>
+
+                                        <!-- Email address input -->
+                                        <div class="mb-3">
+                                            <input class="form-control" id="emailAddress" type="email*" placeholder="Email Address *" data-sb-validations="required, email" />
+                                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                                        </div>
+
+
+                                        <!-- Form submissions success message -->
+                                        <div class="d-none" id="submitSuccessMessage">
+                                            <div class="text-center mb-3">Form submission successful!</div>
+                                        </div>
+
+                                        <!-- Form submissions error message -->
+                                        <div class="d-none" id="submitErrorMessage">
+                                            <div class="text-center text-danger mb-3">Error sending message!</div>
+                                        </div>
+
+                                        <!-- Form submit button -->
+                                        <div class="d-grid">
+                                            <button class="main-btn" id="submitButton" type="submit">Post Comment</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div id="FooterPage">
+        <footer>
+            <div class="container text-center text-md-left col-third">
+                <div class="footer-wrap">
+                    <div class="about">
+                        <img src="img/icon/company-logo.svg" alt="">
+                        <p class=" py-4" style="font-weight: 500; margin-top: -33px;">About</p>
+                        <p class="text-muted py-4">
+                            Job-Seeker which can provide you with all the tools </br> needed to run an effcieint business remotely.
+                        </p>
+                        <div class="social-media">
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/facebook-icon.svg" alt=""></a>
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/instagram-icon.svg" alt=""></a>
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/linkedin-icon.svg" alt=""></a>
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/email-icon.svg" alt=""></a>
+                        </div>
+                    </div>
+
+                    <div class="company  ">
+                        <h6 class="fw-bold">Company</h6>
+                        <p><a href="./contact.html">Contact</a></p>
+                        <p><a href="">Blog</a></p>
+                        <p><a href="">Services</a></p>
+                        <p><a href="">FQA</a></p>
+                    </div>
+
+                    <div class="useful-links  ">
+                        <h6 class="fw-bold">Useful links</h6>
+                        <p><a href="">Terms of </a></p>
+                        <p><a href="">Services</a></p>
+                        <p><a href="">Privacy Policy</a></p>
+                        <p><a href="">Documentation</a></p>
+                        <p><a href="">Changelog</a></p>
+                        <p><a href="">Components</a></p>
+                    </div>
+
+                    <div class="newsletter  ">
+                        <h6 class="fw-bold">Have a Question?</h6>
+                        <p><i class="fa-solid fa-location-dot"></i>203 Fake St. Mountain View, San Francisco, California, USA</p>
+                        <p><i class="fa-solid fa-phone"></i> 84+ 0935459488</p>
+                        <p><i class="fa-solid fa-envelope"></i> kienphongtran2003@gmail.com / buikhoa2015@gmail.com  </p>
+                    </div>
+
+                </div>
+                <div class="copyright txtwhite">
+                    <p>&copy; 2023 JOB-SEEKER | Created by Phong / Khoa</p>
+                    <!--
+                    This template is licenced under Attribution 3.0 (CC BY 3.0 PL),
+                    You are free to: Share and Adapt. You must give appropriate credit, you may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+                    -->
+                </div>
+            </div>
+
+        </footer>
+    </div>
+
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,293 @@
+﻿@model PagedList.IPagedList<Trial.Models.JD>
+@using PagedList.Mvc;
+@{
+    Layout = null;
+    ViewBag.Title = "Job Seeker | Applicant";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job-List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+    <link rel="stylesheet" href="~/Content/Applicant access/access/css/joblist.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/Applicant access/access/css/responsive.css">
+    <link rel="stylesheet" href="./access/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chathura:wght@800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/image/logo_snkhead.png" type="image/x-icon">
+</head>
+<body>
+    <div id="main">
+        <!-- Header -->
+        <div id="header">
+            <!-- logo button -->
+            <a href="#" class="logo">
+                <div class="inner-headings">
+                    <span>
+                        Job-Seeker<br />
+                        Full-Time <br />
+                        Part-Time <br />
+                        Freelancer <br />
+                        Intership <br />
+                        Temporary <br />
+                    </span>
+                </div>
+            </a>
+            <!-- header - bar -->
+            <div class="nav mt-12 ">
+                <ul class="sub-nav">
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Home", "ApplicantFirstPage", "HomeApplicant")</a></li>
+                    <li class="mt-12"><a href="">@Html.ActionLink("Job list", "JDlist", "HomeApplicant")</a></li>
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Your CV list", "YourCVList", "HomeApplicant")</a></li>
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Contact", "Contact", "HomeApplicant")</a></li>
+                    <!-- job button -->
+                    <button class="bbtn2"><a href="#">@Html.ActionLink("Want a Job", "Add", "HomeApplicant", new { @style = "color:#fff; text-decoration: none;" })</a></button>
+                </ul>
+                <!-- Log out statement -->
+                <div class="log-out">
+                    <!-- Name User -->
+                    @{
+                        var cur_user = (Trial.Models.user)HttpContext.Current.Session["User"];
+                        if (cur_user != null)
+                        {
+                            string name = cur_user.email;
+                            <p class="name-user">
+                                @name.Split('@')[0]
+                            </p>
+                        }
+                    }
+                    <!-- Log out button -->
+                    <div class="scene">
+                        <div class="cube">
+                            <span class="side top">
+                                @Html.ActionLink("Are You Sure?", "Logout", "User", new { area = "" }, new { @style = "text-decoration: none; color: white;" })
+                            </span>
+                            <span class="side front">
+                                <i class="fa-solid fa-right-from-bracket"> Log Out</i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slider -->
+        <!-- Search Job -->
+        <div class="form">
+            <div class="searching">
+                <h1 class="srch-name">Search Your Job Here</h1>
+                <div class="text-form">
+                    <p class="text-formmer">Find a Job</p>
+                </div>
+                <form class="form-search" method="get" action="@Url.Action("JDlist", "HomeApplicant")">
+                    <i class="ti-search search-btn"></i>
+                    <div class="check-out">
+                        <input type="text" style="margin-top: 8px;" name="position" placeholder="Search company here.....">
+                    </div>
+                    <span class="stick ">|</span>
+                    <div class="location">
+                        <label class="local-name" for="lname">Location:</label>
+                        <select name="location" id="location-job">
+                            <option selected value=""> All</option>
+                            <option value="HCM">HCM</option>
+                            <option value="Hanoi">Hanoi</option>
+                        </select>
+                        <input class="srch-btn" type="submit" value="Search">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Job List -->
+        <div id="content">
+            <!-- Company List -->
+            <div class="joblist">
+                <div class="container">
+                    <div class="bar-father">
+                        <div class=" bar-child">
+                            <div class="all-posts">
+                                <!-- list item 1 -->
+                                @*foreach run here*@
+                                @{
+                                    if (Model.Count() <= 0)
+                                    {
+                                        <div class="post-item">
+                                            <div class="post-img"><img src="~/Content/Applicant access/access/img/avatar2.png" alt="" style="height:93%;width: 72%;margin-left: -65px;"></div>
+                                            <div class="post-main-info">
+                                                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
+                                                <div class="post-meta">
+                                                    <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> ?? / ?? / ????</span>
+                                                    <p><i class="fa-solid fa-location-dot"></i>Located: ???</p>
+                                                    <p><i class="fa-solid fa-fingerprint"></i>Position: ???</p>
+                                                </div>
+                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</p>
+                                                <a href="./companylist.html">
+                                                    <button class="main-btn"><a style="color:#fff; text-decoration: none;">Apply Now</a>  </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <div class="post-item">
+                                                <div class="post-img"><img src="@item.company_images" alt="" style="height:93%;width: 72%;margin-left: -65px;"></div>
+                                                <div class="post-main-info">
+                                                    <h4>@item.company_name </h4>
+                                                    <div class="post-meta">
+                                                        <span><i class="far fa-user"></i> @item.JD_name </span><span><i class="far fa-calendar"></i> @item.date_upload.ToShortDateString()</span>
+                                                        <p><i class="fa-solid fa-location-dot"></i>Located: @item.location</p>
+                                                        <p><i class="fa-solid fa-fingerprint"></i>Position: @item.hired_position</p>
+                                                    </div>
+                                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</p>
+                                                    <a href="./companylist.html">
+                                                        @Html.ActionLink("Apply Now", "DetailJob", "HomeApplicant", new { @id = item.JD_id }
+                                                                                                                , new { @class = "main-btn", @style = "color:#fff; text-decoration: none;" })
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                                <!-- Pagination -->
+
+                            </div>
+                            <!-- List CV -->
+                            <div class="sidebar">
+                                <div class="search-by-sidebar mt-5">
+                                    <h3> <i class="fa-solid fa-left-long left-arrow" style="margin-right: 20px;"></i>Suitable job for you</h3>
+                                </div>
+                                <div class="recent-posts my-5">
+                                    <h4>Choose Your <span class="green">CV</span></h4>
+                                    <!-- View Button -->
+                                    <button class="viewbtn" style="margin-top: 20px"><a href="#">@Html.ActionLink("View all CV", "ChooseYourCVList", "HomeApplicant", new { @style = "color:#333; text-decoration: none;" })</a></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                @*Number of products*@
+                <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right" style="margin-top: 20px; margin-bottom: 0px; margin-left: 340px; font-weight: 500; ">
+                    Page: @(Model.PageCount<Model.PageNumber? 0:Model.PageNumber)/@Model.PageCount
+                </div>
+            </div>
+            @*pages*@
+
+            <div class="pagination">
+                @Html.PagedListPager(Model, page => Url.Action("JDlist", "HomeApplicant", new { page = page, position = ViewBag.pos, location = ViewBag.locate }))
+            </div>
+            <style>
+                .pagination {
+                    width: fit-content;
+                    /*border: solid 1px black;*/
+                    height: 25px;
+                    border-radius: 5px;
+                    align-content: center;
+                    justify-content: center;
+                    /*position: absolute;
+                    top: 62%;
+                    left: 9%;*/
+                    margin-left: 65px;
+                    margin-top: -10px;
+                    margin-bottom: -10px;
+                }
+
+                    .pagination li {
+                        padding: 0 7px;
+                        margin-top: -2px;
+                        border: none;
+                        display: inline;
+                        /*            background-color: #c3c3c3;*/
+                    }
+
+                    .pagination a:hover {
+                        color: #b8b8b8;
+                    }
+
+                    .pagination a {
+                        padding: 0;
+                        font-size: 18px;
+                        text-decoration: none;
+                        color: black;
+                        font-weight: 500;
+                    }
+            </style>
+            <!-- Footer -->
+            <div id="FooterPage">
+                <footer>
+                    <div class="container text-center text-md-left col-third">
+                        <div class="footer-wrap">
+                            <div class="about">
+
+                                <p class=" py-4" style="font-weight: 500; margin-top: -33px;">About</p>
+                                <p class="text-muted py-4">
+                                    Job-Seeker which can provide you with all the tools </br> needed to run an effcieint business remotely.
+                                </p>
+                                <div class="social-media">
+                                    <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                                    <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                                    <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                                    <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                                </div>
+                            </div>
+
+                            <div class="company  ">
+                                <h6 class="fw-bold">Company</h6>
+                                <p><a href="./contact.html">Contact</a></p>
+                                <p><a href="">Blog</a></p>
+                                <p><a href="">Services</a></p>
+                                <p><a href="">FQA</a></p>
+                            </div>
+
+                            <div class="useful-links  ">
+                                <h6 class="fw-bold">Useful links</h6>
+                                <p><a href="">Terms of </a></p>
+                                <p><a href="">Services</a></p>
+                                <p><a href="">Privacy Policy</a></p>
+                                <p><a href="">Documentation</a></p>
+                                <p><a href="">Changelog</a></p>
+                                <p><a href="">Components</a></p>
+                            </div>
+
+                            <div class="newsletter  ">
+                                <h6 class="fw-bold">Have a Question?</h6>
+                                <p><i class="fa-solid fa-location-dot"></i>203 Fake St. Mountain View, San Francisco, California, USA</p>
+                                <p><i class="fa-solid fa-phone"></i> 84+ 0935459488</p>
+                                <p><i class="fa-solid fa-envelope"></i> kienphongtran2003@gmail.com / buikhoa2015@gmail.com  </p>
+                            </div>
+
+                        </div>
+                        <div class="copyright txtwhite">
+                            <p>&copy; 2023 JOB-SEEKER | Created by Phong / Khoa</p>
+                            <!--
+                    This template is licenced under Attribution 3.0 (CC BY 3.0 PL),
+                    You are free to: Share and Adapt. You must give appropriate credit, you may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+                    -->
+                        </div>
+                    </div>
+
+                </footer>
+            </div>
+
+        </div>
+
+
+
+
+
+        <script src="~/Content/Applicant access/access/java/java.js"></script>
+</body>
+</html>

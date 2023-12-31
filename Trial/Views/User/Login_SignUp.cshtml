@@ -1,0 +1,379 @@
+﻿@using Trial.Models
+@model LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/login_signupStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Job Seeker | Login</title>
+</head>
+<body>
+    <img src="~/Content/images/background.png" alt="" class="background">
+
+    <div class="login Container">
+        <div class="LOGIN text">
+            Login
+        </div>
+        <div class="content s1">
+            Welcome back
+
+        </div>
+        <div class="subject sub1">
+            <span>
+                WEB DEVELOPER <br />
+                APP DEVELOPER <br />
+                SOFTWARE ENGINEER <br />
+                UI-UX DESIGNER <br />
+                BUSINESS ANALYST <br />
+            </span>
+        </div>
+        <button class="rounded-pill btn1">
+            ACCESS<i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+
+    <div class="signup Container">
+        <div class="SIGNUP text">
+            Sign up
+        </div>
+        <div class="content s2-1">
+            We glad for
+        </div>
+        <div class="content s2-2">
+            having you
+        </div>
+        <div class="subject sub2">
+            <span>
+                WEB DEVELOPER <br />
+                APP DEVELOPER <br />
+                SOFTWARE ENGINEER <br />
+                UI-UX DESIGNER <br />
+                BUSINESS ANALYST <br />
+            </span>
+        </div>
+        <button class="rounded-pill btn2">
+            <i class="bi bi-chevron-left"></i> ACCESS
+        </button>
+    </div>
+
+
+    <button class="rounded-pill backbtn">
+        <i class="bi bi-chevron-left"></i> I have no account
+    </button>
+    <button class="rounded-pill backbtn2">
+        Already a member <i class="bi bi-chevron-right"></i>
+    </button>
+
+
+    <!-- Login Form -->
+    <div class="Container2 LGFORM">
+        <form class="form FORMlogin">
+            <div class="ms1">
+                <i class="fa-solid fa-circle-exclamation" style="color: #b81b1b;"></i>
+                @*this can be changed*@
+            </div>
+            <div class="inputbox form-group">
+                <input type="text" name="email" id="emailInput" placeholder="Email">
+                <i class="bi bi-person-circle"></i>
+                <span>Email</span>
+            </div>
+
+
+            @*Password*@
+            <div class="ms2" style="top: 19%;">
+                <i class="fa-solid fa-circle-exclamation" style="color: #b81b1b;"></i>
+                @*this can be changed*@
+            </div>
+            <div class="inputbox form-group">
+                <input class="passw3" name="password" type="password" id="passInput" placeholder="Password">
+                <i class="fa-solid fa-lock"></i>
+                <i id="reveal3" class="bi bi-eye-slash" style="left: 90%; top:13%; font-size: 25px; cursor: pointer;"></i>
+                <span>Password</span>
+            </div>
+            <div class="reminder form-group">
+                <label class="policy_contain" style="color: black;">
+                    Remember me
+                    <input type="checkbox" name="remember" id="policy">
+                    <span class="checkmark1" for="policy"></span>
+                </label>
+                <a href="#" style="text-decoration: none; color: white; font-size: 13px; font-weight: 500;">Forget your password?</a>
+
+            </div>
+            <div class="inputbox">
+                <input type="button" class="submitBtn" id="LoginSubmit" value="Login">
+            </div>
+
+            <div class="option">Or continue with</div>
+
+            @*<button class="GGbtn">
+                <div class="logoGG"></div> Login with Google Account
+            </button>*@
+        </form>
+        <div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Sign up FORM -->
+    <div class="Container2 SGFORM">
+        <form class="form FORMsignup" method="post">
+
+            <div class="MS ms1-1">
+                <i class="fa-solid fa-circle-exclamation" style="color: #b81b1b;"></i>
+                <span class= "ms1-1Text"></span>
+                @*this can be changed*@
+            </div>
+            <div class="inputbox form-group">
+                <input type="text" required="required" name="email" id="emailInput2">
+                <i class="bi bi-person-circle"></i>
+                <span>Email</span>
+            </div>
+
+
+            <div class="inputbox form-group">
+                <input type="text" required="required" name="fullname" id="nameInput">
+                <i class="bi bi-person-circle"></i>
+                <span>Full name</span>
+            </div>
+
+
+            <div class="radio_btn">
+                <div class="radio r1 form-group">
+                    <input type="radio" name="gender" class="radioInput" value="Male" id="myRadio1" checked>
+                    <label for="myRadio1" class="radioLabel">Male</label>
+                    <input type="radio" name="gender" class="radioInput" value="Female" id="myRadio2">
+                    <label for="myRadio2" class="radioLabel">Female</label>
+                </div>
+
+                <div class="radio r2 form-group">
+                    <input type="radio" name="position" class="radioInput" value="Applicant" id="myRadio3" checked>
+                    <label for="myRadio3" class="radioLabel">Applicant</label>
+                    <input type="radio" name="position" class="radioInput" value="Employer" id="myRadio4">
+                    <label for="myRadio4" class="radioLabel">Employer</label>
+                </div>
+            </div>
+
+
+            <div class="inputbox form-group">
+                <input class="passw1 " type="password" required="required" name="password" id="passInput2">
+                <i class="fa-solid fa-lock"></i>
+                <i id="reveal1" class="bi bi-eye-slash"
+                   style="left: 90%; top:13%; font-size: 25px; cursor: pointer;"></i>
+                <span>Password</span>
+            </div>
+
+            <div class="MS ms2-2">
+                <i class="fa-solid fa-circle-exclamation" style="color: #b81b1b;"></i>
+                <span class="ms2-2Text"></span>
+                @*this can be changed*@
+            </div>
+            <div class="inputbox form-group">
+                <input class="passw2 " type="password" required="required" name="confirm_password" id="confirmInput">
+                <i class="fa-solid fa-lock"></i>
+                <i id="reveal2" class="bi bi-eye-slash"
+                   style="left: 90%; top:13%; font-size: 25px; cursor: pointer;"></i>
+                <span>Confirm password</span>
+            </div>
+
+            <div class="MS ms3">
+                <i class="fa-solid fa-circle-exclamation" style="color: #b81b1b;"></i>
+                @*this can be changed*@
+            </div>
+            <label class="policy_contain form-group">
+                Agree to Terms and Conditions
+                <input type="checkbox" name="policy" required="required" id="policy">
+                <span class="checkmark1" for="policy"></span>
+            </label>
+
+            <div class="inputbox form-group">
+                @*<input type="submit" value="Create Account">*@
+                <input type="button" class="submitBtn" id="SignUpSubmit" value="Create Account"
+                       @*style=" padding: 10px 40px !important;
+                        font-weight: 500; width: 60%; background-color: #B0B8FF;
+                        color: white; margin-left: 20%;
+                        border: 3px solid transparent; border-radius: 30px;"*@>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="~/Scripts/operation.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#LoginSubmit").click(function () {
+                console.log("You click");
+                var email = $("#emailInput").val();
+                var pass = $("#passInput").val();
+
+
+                var formdata = new FormData();
+                console.log("Jquery " + email + " " + pass);
+                formdata.append("email", email);
+                formdata.append("password", pass);
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "/User/CheckValid", // Controller/View
+                        data: formdata,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        success: function (check) {
+                            console.log("Success");
+                            if (check.success == true) {
+                                console.log("True");
+                                window.location.href = '@Url.Action("Authority", "Authority")';
+                            }
+                            else {
+                                console.log("False");
+                                if (check.type === "Blocked") {
+                                    window.location.href = '@Url.Action("IsBlocked", "Error")';
+                                }
+                                else {
+                                    if (!$(".ms1").hasClass('message') && !$(".ms2").hasClass('message')) {
+                                        $(".ms1").append("Couldn't find your account");
+                                        $(".ms2").append("Your password is incorrect");
+                                    }
+                                    $(".ms1").addClass("message");
+                                    $(".ms2").addClass("message");
+                                    $("#emailInput").addClass("testingError");
+                                    $("#passInput").addClass("testingError");
+                                }
+                            }
+                        },
+                        error: function (err) {
+                            alert('Error', err.statusText);
+                        }
+                    });
+            })
+            $("#SignUpSubmit").click(function () {
+                var formdata = new FormData();
+                var email = $("#emailInput2").val();
+                var fname = $("#nameInput").val();
+                var gender = $('input[name="gender"]:checked').val();
+                var pos = $('input[name="position"]:checked').val();
+                var pass = $("#passInput2").val();
+                var confirm = $("#confirmInput").val();
+                var test = $('input[name="policy"]:checked').val();
+                var policy = true;
+                if (test !== "on") {
+                    policy = false;
+                }
+                console.log("Jquery " + email + " " + fname + " " + gender + " " + pos + " "
+                    + pass + " " + confirm + " " + policy);
+                formdata.append("email", email);
+                formdata.append("userfname", fname);
+                formdata.append("gender", gender);
+                formdata.append("position", pos);
+                formdata.append("password", pass);
+                formdata.append("confirmPSW", confirm);
+                formdata.append("isAgreePolicy", policy);
+                $.ajax(
+                    {
+                        type: "POST", //HTTP POST Method
+                        url: "/User/CheckValidNew", // Controller/View
+                        data: formdata,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        success: function (check) {
+                            console.log("Success");
+                            if (check.success == true) {
+                                console.log("True");
+                                window.location.href = '@Url.Action("Authority", "Authority")';//Thay bang trang home
+                            }
+			                else {
+                                console.log("False");
+                                var types = check.type.split(" ");
+                                var messages = check.message.split(/\r?\n|\r|\n/g);
+                                console.log("JS " + check.type + "length: " + types.length);
+                                console.log("JSmess " + check.message + "length: " + messages.length);
+                                for (var i = 0; i < types.length - 1; i++) {
+                                    console.log("JStest " + types[i]);
+                                    var data = types[i];
+                                    if (types[i] == 1) {
+                                        var mes = messages[i];
+                                        console.log("JS " + mes);
+                                        if (!$(".ms1-1").hasClass('message')) {
+                                            $(".ms1-1Text").text(mes);
+                                        }
+                                        if ($(".ms1-1").text() !== mes) {
+                                            $(".ms1-1Text").text(mes)
+                                        }
+                                        $(".ms1-1").addClass("message");
+                                        $("#emailInput2").addClass("testingError");
+                                    }
+                                    else if (types[i] == 2 || types[i] == 5) {
+                                        var mes = messages[i];
+                                        console.log("JS " + mes);
+                                        if (!$(".ms2-2").hasClass('message')) {
+                                            $(".ms2-2Text").text(mes);
+                                        } if ($(".ms2-2").text() !== mes) {
+                                            $(".ms2-2Text").text(mes)
+                                        }
+                                        $(".ms2-2").addClass("message");
+                                        $("#confirmInput").addClass("testingError");
+                                    }
+                                    else if (types[i] == 3) {
+                                        var mes = messages[i];
+                                        console.log("JS " + mes);
+                                        if (!$(".ms3").hasClass('message')) {
+                                            $(".ms3").append(mes);
+                                        }
+                                        $(".ms3").addClass("message");
+                                    }
+                                    else if (types[i] == 4) {
+                                        var mes = messages[i];
+                                        console.log("JS " + mes);
+                                        if (!$(".ms1-1").hasClass('message')) {
+                                            $(".ms1-1Text").text(mes);
+                                        }
+                                        if ($(".ms1-1").text() !== mes) {
+                                            $(".ms1-1Text").text(mes)
+                                        }
+                                        $(".ms1-1").addClass("message");
+                                        $("#emailInput2").addClass("testingError");
+                                    }
+                                }
+        			        }
+    			        },
+    			        error: function (err) {
+        			        alert('Error', err.statusText);
+    			        }
+		            });
+            })
+
+        });
+    </script>
+
+
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert('@TempData["Message"]');
+            };
+        </script>
+    }
+
+
+</body>
+</html>

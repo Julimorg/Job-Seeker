@@ -1,0 +1,136 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/Content/adminStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chathura:wght@800&display=swap" rel="stylesheet">
+    <!-- <link rel = "icon" href = "/image/logo_snkhead.png" type = "image/x-icon"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+</head>
+<body>
+    <div id="header">
+        <!-- logo button  -->
+        <a href="#" class="logo">Job Seeker</a>
+        <!-- header - bar  -->
+        <div class="nav mt-12">
+            <ul class="sub-nav">
+                <li><a href="#">Home</a></li>
+                <li>
+                    @{
+                        var cur_user = (Trial.Models.user)HttpContext.Current.Session["User"];
+                        if (cur_user != null)
+                        {
+                            string name = cur_user.email;
+                            <a>@name.Split('@')[0]</a>
+                        }
+                                }
+                </li>
+                <li><a>@Html.ActionLink("Log out", "Logout", "User", new { area = "" }, null)</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <nav class="menu">
+            <div class="iconMenu element">
+                <i class="fa-solid fa-bars" style="color: black;"></i>
+            </div>
+            <div class="userContainer element">
+
+                <div class="userList">
+                    <i class="fa-solid fa-chevron-right i1" style="color: #ffffff;" onclick="moreOption(1)"></i>
+                    <a href="@Url.Action("ListOfUsers","HomeAdmin")" 
+                        data-for-tab="1">Users List</a>
+                </div>
+                <div class="blockedList hidden h1">
+                    <a href="@Url.Action("ListOfUsers", "HomeAdmin", new { @isBlocked = 1 })" data-for-tab="2">Blocked List</a>
+
+                </div>
+            </div>
+            <div class="postContainer element">
+
+                <div class="postList">
+                    <i class="fa-solid fa-chevron-right i2" style="color: #ffffff;" onclick="moreOption(2,3)"></i>
+                    <a href="@Url.Action("ListOfPosts", "HomeAdmin")" data-for-tab="3">Posts List</a>
+                </div>
+                <div class="approvedList hidden h2">
+                    <a href="@Url.Action("ListOfPosts", "HomeAdmin", new { @status = "Approved" })" data-for-tab="4">Approved List</a>
+
+                </div>
+                <div class="rejectedList hidden h3">
+                    <a href="@Url.Action("ListOfPosts", "HomeAdmin", new { @status = "Rejected" })" data-for-tab="5">Rejected List</a>
+                </div>
+
+            </div>
+        </nav>
+
+
+        <div class="notiContainer">
+            <div class="notiTitle">
+                Notification
+            </div>
+            <hr>
+            <div class="notiList">
+                <ul>
+                    <li>
+                        <div class="noti_eleTitle">
+                            Notification 1: <span>(15/10/2023)</span>
+                        </div>
+                        <div class="noti_eleContent">
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="noti_eleTitle">
+                            Notification 2: <span>(15/10/2023)</span>
+                        </div>
+                        <div class="noti_eleContent">
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="noti_eleTitle">
+                            Notification 3: <span>(15/10/2023)</span>
+                        </div>
+                        <div class="noti_eleContent">
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="noti_eleTitle">
+                            Notification 4: <span>(15/10/2023)</span>
+                        </div>
+                        <div class="noti_eleContent">
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur. Montes sit in facilisis a risus egestas...
+                            Lorem ipsum dolor sit amet consectetur.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/adminJS.js"></script>
+</body>    
+</html>

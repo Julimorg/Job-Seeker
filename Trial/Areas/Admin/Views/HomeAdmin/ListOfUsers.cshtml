@@ -1,0 +1,195 @@
+﻿@model PagedList.IPagedList<Trial.Models.userTable>
+@using PagedList.Mvc;
+@{
+    Layout = null;
+    var firstEle = Model.FirstOrDefault();
+    int isBlocked = 0;
+    if (firstEle != null)
+    {
+        if (firstEle.is_blocked == 1) { isBlocked = 1; }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/Content/adminStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chathura:wght@800&display=swap" rel="stylesheet">
+    <!-- <link rel = "icon" href = "/image/logo_snkhead.png" type = "image/x-icon"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+</head>
+<body>
+    <div id="header">
+        <!-- logo button  -->
+        <a href="#" class="logo">Job Seeker</a>
+        <!-- header - bar  -->
+        <div class="nav mt-12">
+            <ul class="sub-nav">
+                <li><a href="#">Home</a></li>
+                <li>
+                    @{
+                        var cur_user = (Trial.Models.user)HttpContext.Current.Session["User"];
+                        if (cur_user != null)
+                        {
+                            string name = cur_user.email;
+                            <a>@name.Split('@')[0]</a>
+                        }
+                    }
+                </li>
+                <li><a>@Html.ActionLink("Log out", "Logout", "User", new { area = "" }, null)</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <nav class="menu">
+            <div class="iconMenu element">
+                <i class="fa-solid fa-bars" style="color: black;"></i>
+            </div>
+            <div class="userContainer element">
+
+                <div class="userList">
+                    <i class="fa-solid fa-chevron-right i1" style="color: #ffffff;" onclick="moreOption(1)"></i>
+                    <a href="@Url.Action("ListOfUsers","HomeAdmin")"
+                       data-for-tab="1">Users List</a>
+                </div>
+                <div class="blockedList hidden h1">
+                    <a href="@Url.Action("ListOfUsers", "HomeAdmin", new {@isBlocked = 1})" data-for-tab="2">Blocked List</a>
+
+                </div>
+            </div>
+            <div class="postContainer element">
+
+                <div class="postList">
+                    <i class="fa-solid fa-chevron-right i2" style="color: #ffffff;" onclick="moreOption(2,3)"></i>
+                    <a href="@Url.Action("ListOfPosts","HomeAdmin")" data-for-tab="3">Posts List</a>
+                </div>
+                <div class="approvedList hidden h2">
+                    <a href="@Url.Action("ListOfPosts","HomeAdmin", new {@status = "Approved"})" data-for-tab="4">Approved List</a>
+
+                </div>
+                <div class="rejectedList hidden h3">
+                    <a href="@Url.Action("ListOfPosts","HomeAdmin", new {@status = "Rejected"})" data-for-tab="5">Rejected List</a>
+                </div>
+
+            </div>
+        </nav>
+
+        <form class="searchBox" method="get" action="@Url.Action("ListOfUsers", "HomeAdmin")">
+            <input type="text" class="searchBar" name="account">
+            <span style="pointer-events:none">Searching for account</span>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="hidden" name="isBlocked" value=@isBlocked />
+            <input type="hidden" name="position" value="@ViewBag.pos" />
+        </form>
+        <div class="table-content">
+            <input type="button" id="Employer_JD" value="Employer"
+                   onclick="location.href='@Url.Action("ListOfUsers", "HomeAdmin",new {@position = "Employer", @isBlocked = isBlocked})'" />
+            <input type="button" id="Applicant_CV" value="Applicant"
+                   onclick="location.href='@Url.Action("ListOfUsers", "HomeAdmin",new {@position = "Applicant", @isBlocked = isBlocked})'" />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive" data-pattern="priority-columns">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th data-priority="1">Name</th>
+                                    <th data-priority="2">Position</th>
+                                    <th data-priority="4"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="position: relative;">
+                                        <td style="padding: 15px 8px;">@item.email</td>
+                                        <td style="padding: 15px 8px;">@item.full_name</td>
+                                        <td style="padding: 15px 8px;">@item.position</td>
+                                        <td style="padding: 15px 8px;">
+                                            <input type="button" id="option" class="det" value="Detail" @*style="margin-left: 14%;"*@
+                                                   onclick="location.href='@Url.Action("User_Detail", "HomeAdmin",new {@id = item.id, @position = item.position})'" />
+                                            @*@Html.ActionLink("Blocked", "Block_UnBlock", new {@id = item.id},
+                                                new {@id = "option", @class = "rej", @type = "button", @style = "margin-left: 14%;" });*@
+                                            @{
+                                                if (item.is_blocked == 0)
+                                                {
+                                                    <input type="button" id="option" class="rej" value="Block" @*style="margin-left: 14%;"*@
+                                                           onclick="location.href='@Url.Action("Block_UnBlock", "HomeAdmin",new {@id = item.id})'" />
+                                                }
+                                                else
+                                                {
+                                                    <input type="button" id="option" class="rej" value="Unblock" @*style="margin-left: 14%"*@
+                                                           onclick="location.href='@Url.Action("Block_UnBlock", "HomeAdmin",new {@id = item.id})'" />
+                                                }
+                                            }
+                                            <input type="button" id="option" class="det" value="Send Mail" @*style="margin-left: 14%;"*@
+                                                onclick="location.href='@Url.Action("SendMail", "HomeAdmin",new {@email = item.email})'" />
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @*Number of products*@
+        <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right" style="position: absolute; top: 92.5%; left: 90%; font-weight: 500; ">
+            Page: @(Model.PageCount<Model.PageNumber? 0:Model.PageNumber)/@Model.PageCount
+        </div>
+    </div>
+    @*pages*@
+
+    <div class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("ListOfUsers", "HomeAdmin", new { page = page, position = ViewBag.pos, @isBlocked = isBlocked}))
+    </div>
+    <style>
+        .pagination {
+            width: fit-content;
+            /*border: solid 1px black;*/
+            height: 25px;
+            border-radius: 5px;
+            align-content: center;
+            justify-content: center;
+            position: absolute;
+            top: 90%;
+            left:20%;
+        }
+
+            .pagination li {
+                
+                padding: 0 7px;
+                margin-top: -2px;
+                border: none;
+                display: inline;
+                /*            background-color: #c3c3c3;*/
+            }
+
+            .pagination a:hover {
+
+                color: #b8b8b8;
+            }
+            .pagination a {
+                padding: 0;
+                font-size: 16px;
+                text-decoration: none;
+                color: black;
+                font-weight:500;
+            }
+    </style>
+    <script src="~/Scripts/adminJS.js"></script>
+</body>
+</html>

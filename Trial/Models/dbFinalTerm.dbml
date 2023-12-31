@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FinalTerm" Class="dbFinalTermDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.authority" Member="authorities">
+    <Type Name="authority">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="canDo_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="user_authority" Member="user" ThisKey="user_id" OtherKey="user_id" Type="user" IsForeignKey="true" />
+      <Association Name="canDo_authority" Member="canDo" ThisKey="canDo_id" OtherKey="canDo_id" Type="canDo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="user_fname" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="position" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="isBlocked" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="user_authority" Member="authorities" ThisKey="user_id" OtherKey="user_id" Type="authority" />
+      <Association Name="user_CV_manager" Member="CV_managers" ThisKey="user_id" OtherKey="user_id" Type="CV_manager" />
+      <Association Name="user_JD_manager" Member="JD_managers" ThisKey="user_id" OtherKey="user_id" Type="JD_manager" />
+    </Type>
+  </Table>
+  <Table Name="dbo.canDo" Member="canDos">
+    <Type Name="canDo">
+      <Column Name="canDo_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="canDo_name" Type="System.String" DbType="NChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="canDo_code" Type="System.String" DbType="Char(200) NOT NULL" CanBeNull="false" />
+      <Association Name="canDo_authority" Member="authorities" ThisKey="canDo_id" OtherKey="canDo_id" Type="authority" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CV" Member="CVs">
+    <Type Name="CV">
+      <Column Name="CV_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="applicant_name" Type="System.String" DbType="NChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="applied_position" Type="System.String" DbType="Char(200) NOT NULL" CanBeNull="false" />
+      <Column Name="location" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CV_file" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="date_upload" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Column Name="CV_name" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Association Name="CV_CV_manager" Member="CV_managers" ThisKey="CV_id" OtherKey="CV_id" Type="CV_manager" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CV_managers" Member="CV_managers">
+    <Type Name="CV_manager">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CV_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="CV_CV_manager" Member="CV" ThisKey="CV_id" OtherKey="CV_id" Type="CV" IsForeignKey="true" />
+      <Association Name="user_CV_manager" Member="user" ThisKey="user_id" OtherKey="user_id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JD" Member="JDs">
+    <Type Name="JD">
+      <Column Name="JD_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="company_name" Type="System.String" DbType="NChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="hired_position" Type="System.String" DbType="Char(200) NOT NULL" CanBeNull="false" />
+      <Column Name="location" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="JD_file" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="isOffered" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_upload" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="company_images" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Column Name="status" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Column Name="position_des" Type="System.String" DbType="Char(1000)" CanBeNull="true" />
+      <Column Name="JD_name" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Association Name="JD_JD_manager" Member="JD_managers" ThisKey="JD_id" OtherKey="JD_id" Type="JD_manager" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JD_managers" Member="JD_managers">
+    <Type Name="JD_manager">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JD_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="JD_JD_manager" Member="JD" ThisKey="JD_id" OtherKey="JD_id" Type="JD" IsForeignKey="true" />
+      <Association Name="user_JD_manager" Member="user" ThisKey="user_id" OtherKey="user_id" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

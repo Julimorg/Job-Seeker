@@ -1,0 +1,224 @@
+﻿@model Trial.Models.CV
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+    <link rel="stylesheet" href="~/Content/Applicant access/access/css/cv.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/Applicant access/access/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chathura:wght@800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/image/logo_snkhead.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <!-- logo button -->
+            <a href="#" class="logo">
+                <div class="inner-headings">
+                    <span>
+                        Job-Seeker<br />
+                        Full-Time <br />
+                        Part-Time <br />
+                        Freelancer <br />
+                        Intership <br />
+                        Temporary <br />
+                    </span>
+                </div>
+            </a>
+            <!-- header - bar -->
+            <div class="nav mt-12 ">
+                <ul class="sub-nav">
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Home", "ApplicantFirstPage", "HomeApplicant")</a></li>
+                    <li class="mt-12"><a href="">@Html.ActionLink("Joblist", "JDlist", "HomeApplicant")</a></li>
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Your CV list", "YourCVList", "HomeApplicant")</a></li>
+                    <li class="mt-12"><a href="#">@Html.ActionLink("Contact", "Contact", "HomeApplicant")</a></li>
+                    <!-- job button -->
+                    <button class="bbtn2"><a href="#">@Html.ActionLink("Want a Job", "Add", "HomeApplicant", new { @style = "color:#fff; text-decoration: none;" })</a></button>
+                </ul>
+                <!-- Log out statement -->
+                <div class="log-out"  style="margin-left:600px">
+                    <!-- Name User -->
+                    @{
+                        var cur_user = (Trial.Models.user)HttpContext.Current.Session["User"];
+                        if (cur_user != null)
+                        {
+                            string name = cur_user.email;
+                            <p class="name-user">
+                                @name.Split('@')[0]
+                            </p>
+                        }
+                    }
+                    <!-- Log out button -->
+                    <div class="scene">
+                        <div class="cube">
+                            <span class="side top">
+                                @Html.ActionLink("Are You Sure?", "Logout", "User", new { area = "" }, new { @style = "text-decoration: none; color: white;" })
+                            </span>
+                            <span class="side front">
+                                <i class="fa-solid fa-right-from-bracket"> Log Out</i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- FORM -->
+        <div class="form-name">
+            <p>Create your CV</p>
+        </div>
+        <div class="formCV">
+            @using (Html.BeginForm())
+            {
+                <form method="post">
+                    <h2>Your CV</h2>
+                    <label for="name">CV Name:</label>
+                    <input type="text" id="name" name="CV_name" placeholder="Your CV name..." required value="@Model.CV_name">
+                    <br>
+                    <label for="email">Your Name:</label>
+                    <input type="text" id="email" name="applicant_name" placeholder="Your full name..." required value="@Model.applicant_name">
+                    <br>
+                    <label for="education">Apply Position:</label>
+                    <input type="text" id="education" name="applied_position" placeholder="Your position......" value="@Model.applied_position">
+                    <br>
+                    <div class="location">
+                        <label class="local-name" for="lname">Location:</label>
+                        <select name="location" id="location-job">
+                            <option value="HCM">HCM</option>
+                            <option value="Hanoi">Hanoi</option>
+                        </select>
+                    </div>
+                    <label for="file" class="upfile">Upload your CV file here:</label>
+                    <input type="file" id="CV_file" class="upfile" accept=".pdf, image/*" value="@Model.CV_file"> 
+                    <span style="color: #E44949; font-size: 9.5px; font-weight: 500; font-style: italic; margin-left: -80px;">*If you still use your old CV file, leave it empty</span>
+                    <input type="hidden" name="CV_file" id="directory" value="@Model.CV_file"/>
+
+                    @*<button class="mtn"><span>Submit</span></button>*@
+                    <input type="submit" value="Submit" class="btn btn-default mtn" />
+                </form>
+            }
+        </div>
+        <button class="btn btn-success" id="test" value="Test"></button>
+    </div>
+
+
+    <!-- Footer -->
+    <div id="FooterPage">
+        <footer>
+            <div class="container text-center text-md-left col-third">
+                <div class="footer-wrap">
+                    <div class="about">
+                        <img src="img/icon/company-logo.svg" alt="">
+                        <p class=" py-4" style="font-weight: 500; margin-top: -33px;">About</p>
+                        <p class="text-muted py-4">
+                            Job-Seeker which can provide you with all the tools </br> needed to run an effcieint business remotely.
+                        </p>
+                        <div class="social-media">
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/facebook-icon.svg" alt=""></a>
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/instagram-icon.svg" alt=""></a>
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/linkedin-icon.svg" alt=""></a>
+                            <a href="" class="me-2 text-reset"><img src="~/Content/Applicant access/access/img/icon/email-icon.svg" alt=""></a>
+                        </div>
+                    </div>
+
+                    <div class="company  ">
+                        <h6 class="fw-bold">Company</h6>
+                        <p><a href="./contact.html">Contact</a></p>
+                        <p><a href="">Blog</a></p>
+                        <p><a href="">Services</a></p>
+                        <p><a href="">FQA</a></p>
+                    </div>
+
+                    <div class="useful-links  ">
+                        <h6 class="fw-bold">Useful links</h6>
+                        <p><a href="">Terms of </a></p>
+                        <p><a href="">Services</a></p>
+                        <p><a href="">Privacy Policy</a></p>
+                        <p><a href="">Documentation</a></p>
+                        <p><a href="">Changelog</a></p>
+                        <p><a href="">Components</a></p>
+                    </div>
+
+                    <div class="newsletter  ">
+                        <h6 class="fw-bold">Have a Question?</h6>
+                        <p><i class="fa-solid fa-location-dot"></i>203 Fake St. Mountain View, San Francisco, California, USA</p>
+                        <p><i class="fa-solid fa-phone"></i> 84+ 0935459488</p>
+                        <p><i class="fa-solid fa-envelope"></i> kienphongtran2003@gmail.com / buikhoa2015@gmail.com  </p>
+                    </div>
+
+                </div>
+                <div class="copyright txtwhite">
+                    <p>&copy; 2023 JOB-SEEKER | Created by Phong / Khoa</p>
+                    <!--
+                    This template is licenced under Attribution 3.0 (CC BY 3.0 PL),
+                    You are free to: Share and Adapt. You must give appropriate credit, you may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+                    -->
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+            $(document).ready(function () {
+
+                $('#CV_file').click(function () {
+                    console.log("You Click");
+                    $('#CV_file').change(function () {
+                        console.log("You change");
+                        if (window.FormData !== undefined) {
+
+                            var fileUpload = $('#CV_file').get(0);
+                            var files = fileUpload.files;
+                            var formData = new FormData();
+                            formData.append("fileImage", files[0]);
+                            //formData.append("fileImage", files[0]);
+                            /*for (var i = 0; i < files.length; i++) {
+                                formData.append("fileImage", files[i]);
+                            }*/
+                            $.ajax(
+                                {
+                                    type: 'POST',
+                                    url: '/HomeApplicant/ProcessUpload',
+                                    contentType: false,
+                                    processData: false,
+                                    data: formData,
+                                    success: function (urlImage) {
+                                        console.log(urlImage);
+                                        $('#directory').attr('value', urlImage);
+                                        $('#picture').val(urlImage);
+                                    },
+                                    error: function (err) {
+                                        alert('Error ', err.statusText);
+                                    }
+                                });
+                        }
+                    });
+
+                });
+
+            });
+    </script>
+</body>
+</html>
+
+
