@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job-List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+    <link rel="stylesheet" href="./access/css/cvedit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./access/css/responsive.css">
+    <link rel="stylesheet" href="./access/font/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Koulen&family=League+Spartan&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Chathura:wght@800&display=swap" rel="stylesheet">
+      <link rel = "icon" href = "/image/logo_snkhead.png" type = "image/x-icon">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="main">
+    <!-- Header -->
+    <div id="header" >
+        <!-- logo button -->
+        <a href="#" class="logo">
+            <div class="inner-headings">
+            <span>
+                Job-Seeker<br />
+                Full-Time <br />
+                Part-Time <br />
+                Freelancer <br />
+                Intership <br />
+                Temporary <br />
+              </span>
+            </div>
+        </a>
+        <!-- header - bar -->
+            <div class="nav mt-12 ">
+                <ul class="sub-nav">
+                    <li class="mt-12"><a href="./user.html" >Home</a></li>
+                    <li class="mt-12"><a href="./joblist.html" >Job list</a></li>
+                    <li class="mt-12"><a href="./Cvlist.html">CV List</a></li>
+                    <li class="mt-12"><a href="./contact.html" >Contact</a></li>
+              
+                     <!-- job button -->
+                    <button class="bbtn2"><a href="./yourcv.html" style="color:#fff; text-decoration: none;">Want a Job</a></button> 
+                  </ul>
+                  <!-- Log out statement -->
+                  <div class="log-out">
+                    <!-- Name User -->
+                    <p class="name-user">Name</p>
+                    <!-- Log out button -->
+                    <div class="scene">
+                      <div class="cube">
+                        <span class="side top">
+                         Are You Sure?
+                        </span>
+                        <span class="side front">
+                        <i class="fa-solid fa-right-from-bracket"> Log Out</i>
+                        </span>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                    </div>   
+    <!-- Slider -->
+                         <!-- Search Job -->
+            <div class="form">
+                <div class="searching">
+                    <h1 class="srch-name">Search Your CV Here</h1>
+                <div class="text-form">
+                <p class="text-formmer">Find a CV</p>
+                </div>
+                <div class="form-search">
+                    <i class="ti-search search-btn"></i>
+                <div class="check-out">
+                    <input  type="text" style="margin-top: 8px;"  placeholder="Search your job here.....">
+                </div>
+                <span class="stick ">|</span>
+                <div class="location">
+                    <label class="local-name" for="lname">Location:</label>
+                    <select name="location" id="location-job">
+                      <option value="0">Tp.Hcm</option>
+                      <option value="1">Hanoi</option>
+                    </select>
+                    <input class="srch-btn" type="submit" value="Search">
+                  </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>     
+<!-- Job List -->
+<div id="content">
+      <!-- Company List -->
+        <div class="joblist">
+          <div class="container">
+            <div class="row">
+        <!-- List CV -->
+              <div class="sidebar ">               
+                <div class="search-by-sidebar mt-5"> 
+                  <h3> <i class="fa-solid fa-down-long" style="margin-right: 20px;"></i>CV list here</h3>
+                </div> 
+                <div class="recent-posts my-5">
+                  <h4 class="text-cv">All- <span class="green"> CV<button class="viewbtn"> <a href="./joblist.html">Back to Job list</a></button></span> 
+                </h4>
+                  <!-- List 1 -->
+                  <div class="cv-post">
+                    <div class="cv">
+                    <h4 class="cv-name">
+                      CV-1 
+                      <button class="btn-name"><a href="./joblist.html" style="color:#333;text-decoration: none;">Choose</a></button>
+                    </h4>
+                    <div class="post-meta">
+                      <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+                    </div>
+                    <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+
+            </div>
+          </div>
+          <nav aria-label="blog navigation">
+            <ul class="pagination">
+              <li class="page-item ">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link " data-tab="row1">1</a></li>
+              <li class="page-item"><a class="page-link " data-tab="row2">2</a></li>
+              <li class="page-item"><a class="page-link "  data-tab="row3">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+</div>
+    <!-- Footer -->
+    <div id="FooterPage">
+      <footer>
+        <div class="container text-center text-md-left col-third">
+          <div class="footer-wrap">
+            <div class="about">
+              <img src="img/icon/company-logo.svg" alt="">
+              <p class=" py-4" style="font-weight: 500; margin-top: -33px;">About</p>
+              <p class="text-muted py-4">
+                Job-Seeker which can provide you with all the tools </br> needed to run an effcieint business remotely.
+              </p>
+              <div class="social-media">
+                <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+                <a href="" class="me-2 text-reset"><img src="./access/img/icon/facebook-icon.svg" alt=""></a>
+              </div>
+            </div>
+    
+            <div class="company  ">
+              <h6 class="fw-bold">Company</h6>
+              <p><a href="./contact.html" >Contact</a></p>
+              <p><a href="" >Blog</a></p>
+              <p><a href="">Services</a></p>
+              <p><a href="">FQA</a></p>
+            </div>
+            
+            <div class="useful-links  ">
+              <h6 class="fw-bold" >Useful links</h6>
+              <p><a href="">Terms of </a></p>
+              <p><a href="">Services</a></p>
+              <p><a href="">Privacy Policy</a></p>
+              <p><a href="">Documentation</a></p>
+              <p><a href="">Changelog</a></p>
+              <p><a href="">Components</a></p>
+            </div>
+    
+            <div class="newsletter  ">
+              <h6 class="fw-bold">Have a Question?</h6>
+                <p><i class="fa-solid fa-location-dot"></i>203 Fake St. Mountain View, San Francisco, California, USA</p>
+                <p><i class="fa-solid fa-phone"></i> 84+ 0935459488</p>
+                <p><i class="fa-solid fa-envelope"></i> kienphongtran2003@gmail.com / buikhoa2015@gmail.com  </p>
+            </div>
+            
+          </div>
+          <div class="copyright txtwhite">
+            <p>&copy; 2023 JOB-SEEKER | Created by Phong / Khoa</p>
+            <!--
+            This template is licenced under Attribution 3.0 (CC BY 3.0 PL),
+            You are free to: Share and Adapt. You must give appropriate credit, you may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+            --> 
+          </div>
+        </div>
+      
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</div>
+
+
+<script src="./access/java//java.js"></script>
+</body>
+</html>
