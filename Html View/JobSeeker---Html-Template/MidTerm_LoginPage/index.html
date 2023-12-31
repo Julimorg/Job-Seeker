@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
+    <link rel="stylesheet" href="./access/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Job Seeker</title>
+</head>
+<body>
+    <img src="./access/img/background.png" alt="" class="background">
+    
+    <div class="login Container">
+        <div class="LOGIN text" >
+            Login
+        </div>
+        <div class="content s1" >
+            Welcome back
+        </div>
+        <div class="subject sub1">
+            <span>
+                WEB DEVELOPER <br/>
+                APP DEVELOPER <br/>
+                SOFTWARE ENGINEER <br/>
+                UI-UX DESIGNER <br/>
+                BUSINESS ANALYST <br/>
+            </span>
+        </div>
+        <button class="rounded-pill btn1">
+            Access
+           <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+
+    <div class="signup Container">
+        <div class="SIGNUP text">
+            Sign up
+        </div>
+        <div class="content s2-1">
+            We glad for
+        </div>
+        <div class="content s2-2">
+            having you
+        </div>
+        <div class="subject sub2">
+            <span>
+                WEB DEVELOPER <br/>
+                APP DEVELOPER <br/>
+                SOFTWARE ENGINEER <br/>
+                UI-UX DESIGNER <br/>
+                BUSINESS ANALYST <br/>
+            </span>
+        </div>
+        <button class="rounded-pill btn2">
+            <i class="bi bi-chevron-left"></i> ACCESS
+        </button>
+    </div>
+    <button class = "rounded-pill backbtn">
+        <i class="bi bi-chevron-left"></i> I have no account
+    </button>
+    <button class = "rounded-pill backbtn2">
+        Already a member <i class="bi bi-chevron-right"></i>
+    </button>
+
+
+
+    <!-- Login Form -->
+    <div class="Container2 LGFORM">
+        <div class="form FORMlogin">
+            <div class="inputbox">
+                <input type="text" required = "required">
+                <i class="bi bi-person-circle"></i>
+                <span>Email</span>
+            </div>
+            <div class="inputbox">
+                <input class = "passw3" type="password" required = "required" >
+                <i class="fa-solid fa-lock"></i>
+                <i id="reveal3" class = "bi bi-eye-slash" style = "left: 90%; top:13%; font-size: 25px; cursor: pointer;" ></i>
+                <span>Password</span>
+            </div>
+            <div class="reminder">
+                <label class="policy_contain" style="color: black;"> Remember me
+                    <input type="checkbox" required = "required" id = "policy" >
+                    <span class = "checkmark1" for="policy"></span>
+                </label>
+                <a href="#" style="text-decoration: none; color: white; font-size: 13px; font-weight: 500;">Forget your password?</a>
+    
+            </div>
+            <div class="inputbox">
+                <a href="./MidTerm_HomePage/index.html">
+                       <input type="submit" value="Login">
+                    </a>
+             
+            </div>
+    
+            <div class="option">Or continue with</div>
+            <button class="GGbtn">
+                <div class="logoGG"></div> Login with Google Account
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Sign up FORM -->
+    <div class="Container2 SGFORM">
+        <div class="form FORMsignup">
+            <div class="inputbox">
+                <input type="text" required = "required">
+                <i class="bi bi-person-circle"></i>
+                <span>Email</span>
+            </div>
+            <div class="inputbox">
+                <input type="text" required = "required" >
+                <i class="bi bi-person-circle"></i>
+                <span>Full name</span>
+            </div>
+            <div class="radio_btn">
+                <div class="radio r1">
+                    <input type="radio" name = "gender" class="radioInput" value="Male" id="myRadio1">
+                    <label for="myRadio1" class="radioLabel">Male</label>
+                    <input type="radio" name = "gender" class="radioInput" value="Female" id="myRadio2">
+                    <label for="myRadio2" class="radioLabel">Female</label>
+                </div>
+                <div class="radio r2">
+                    <input type="radio" name = "position" class="radioInput" value="Applicant" id="myRadio3">
+                    <label for="myRadio3" class="radioLabel">Applicant</label>
+                    <input type="radio" name = "position"  class="radioInput" value="Employer" id="myRadio4">
+                    <label for="myRadio4" class="radioLabel">Employer</label>
+                </div>
+            </div>
+
+            <div class="inputbox">
+                <input class = "passw1" type="password" required = "required" >
+                <i class="fa-solid fa-lock"></i>
+                <i id="reveal1" class = "bi bi-eye-slash" 
+                style = "left: 90%; top:13%; font-size: 25px; cursor: pointer;"></i>
+                <span>Password</span>
+            </div>
+            <div class="inputbox">
+                <input class = "passw2" type="password" required = "required">
+                <i class="fa-solid fa-lock"></i>
+                <i id="reveal2" class = "bi bi-eye-slash" 
+                style = "left: 90%; top:13%; font-size: 25px; cursor: pointer;"></i>
+                <span>Confirm password</span>
+            </div>
+            <label class="policy_contain"> Agree to Terms and Conditions           
+                <input type="checkbox" required = "required" id = "policy" >
+                <span class = "checkmark1" for="policy"></span>
+            </label>
+
+            <div class="inputbox">
+                <a href="./MidTerm_HomePage/index.html">
+                <input type="submit" value="Create Account" >
+                </a>
+                
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="./access/operation.js"></script>
+</html>
