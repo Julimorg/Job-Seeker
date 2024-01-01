@@ -13,7 +13,7 @@ Sign Up Form</br>
 Applicant View Form</br>
 ![image](https://github.com/Julimorg/Job-Seeker/assets/94731256/d92dc482-2736-4ca7-9cd0-8fb2cc1472c2)
 
-Applicant View Form</br>
+Employee View Form</br>
 ![image](https://github.com/Julimorg/Job-Seeker/assets/94731256/fee7167f-946c-4b40-9c53-37cdccdbc837)
 
 Admin View Form</br>
